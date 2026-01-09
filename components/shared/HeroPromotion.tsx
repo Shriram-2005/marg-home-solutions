@@ -14,14 +14,12 @@ export default function HeroPromotion() {
   })
 
   useEffect(() => {
-    // Load banner from localStorage (admin-updated)
     const savedBanner = localStorage.getItem('promotionBanner')
     if (savedBanner) {
       setHeroBanner(JSON.parse(savedBanner))
     }
   }, [])
 
-  // Check if promotion is active and valid
   const isValidPromotion = () => {
     if (!heroBanner.validUntil) return true
     const endDate = new Date(heroBanner.validUntil)
@@ -36,7 +34,6 @@ export default function HeroPromotion() {
     <section className="relative py-16 bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy-dark overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-white">
-          {/* Badge */}
           {heroBanner.subtitle && (
             <div className="inline-block mb-6 px-4 py-2 bg-brand-gold/20 backdrop-blur-sm border border-brand-gold rounded-full">
               <p className="text-brand-gold font-semibold text-sm">
@@ -45,12 +42,10 @@ export default function HeroPromotion() {
             </div>
           )}
 
-          {/* Title */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             {heroBanner.title}
           </h2>
 
-          {/* CTA Button */}
           {heroBanner.buttonText && (
             <Link href="/contact">
               <Button
@@ -62,7 +57,6 @@ export default function HeroPromotion() {
             </Link>
           )}
 
-          {/* Validity Date */}
           {heroBanner.validUntil && (
             <p className="mt-6 text-brand-cream/80 text-sm">
               Valid until: {new Date(heroBanner.validUntil).toLocaleDateString('en-IN', {
